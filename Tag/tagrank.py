@@ -27,7 +27,7 @@ with open('douban_tag.txt') as f:
 		tag_index_map[line[:-1].decode('utf-8')] = i
 		tag_index_list.append(line[:-1].decode('utf-8'))
 
-with open('tag_relation_top100.json') as f:
+with open('tag_relation_top20.json') as f:
 	tag_relation_dict = json.load(f)
 
 
@@ -48,7 +48,7 @@ for movie_id in similar_film_dict:
 	print "Algorithm Start"
 
 	# Algorithm 1
-	while len(temp) != 200:
+	while len(temp) != 30:
 		target_index,target_value = min(temp.items(),key=lambda x:x[1])
 		temp.pop(target_index)
 		if float(target_value) == 0:
