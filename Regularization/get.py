@@ -22,13 +22,19 @@ if __name__ == '__main__':
 				movie_tags_dict[movie_id].append(tag)
 
 	movie_id_set = set()
+	index = 0
 	for filename in os.listdir(movie_id_directory):
 		filename = movie_id_directory+"/"+filename
 		with open(filename) as f:
 			movie_list = json.load(f)["data"]
 			for movie in movie_list:
+				index += 1
+				if movie["id"] in movie_id_set:
+					print movie["id"]
 				movie_id_set.add(movie["id"])
 	
+	print index
+	print len(movie_id_set)
 	new_movie_tags_dict = dict()
 	for movie_id in movie_id_set:
 		new_movie_tags_dict[movie_id] = []

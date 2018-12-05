@@ -89,7 +89,6 @@ if __name__ == '__main__':
 	top_250_index = 0
 	print "Start loading Film"
 
-	tag_set = set() #用于记录所有可能的标签
 	for file in os.listdir(movie_detail_path):
 		f = open(movie_detail_path+file)
 		content = json.load(f)
@@ -105,9 +104,7 @@ if __name__ == '__main__':
 			if movie_tag_dict.has_key(film_content["id"]):
 				tags = movie_tag_dict[film_content["id"]]
 			else: #Do not handle cold movie
-				continue 
-			for tag in tags:
-				tag_set.add(tag)
+				continue
 			film_list.append(film(film_content["title"],film_content["aka"],\
 			film_content["casts"],film_content["directors"],film_content["genres"],\
 			film_content["summary"],film_content["year"],film_content["id"],\
@@ -140,7 +137,7 @@ if __name__ == '__main__':
 
 	#Addtional for other compare algorithm
 	# tag_index_map = dict()
-	# with open('douban_tag.txt') as f:
+	# with open('../../Crawler/allow_tag.txt') as f:
 	# 	for i,line in enumerate(f.readlines()):
 	# 		tag_index_map[line[:-1].decode('utf-8')] = i
 
@@ -173,7 +170,6 @@ if __name__ == '__main__':
 	# 		if not tag_index_map.has_key(tag):
 	# 			continue
 	# 		tag_vector[tag_index_map[tag]] = 1
-	# 		tag_set.add(tag_index_map[tag])
 	# 	temp.extend(tag_vector)
 	# 	final_result.append(temp)
 
