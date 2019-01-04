@@ -46,10 +46,10 @@ if __name__ == '__main__':
 
 
 
-	# matrix1 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
-	# matrix2 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
-	# matrix3 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
-	# matrix4 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
+	matrix1 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
+	matrix2 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
+	matrix3 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
+	matrix4 = np.zeros((len(raw_tag_dict),len(tag_id_dict)),dtype=np.int8)
 	similar_matrix = np.zeros((len(tag_id_dict),len(tag_id_dict)),dtype=np.float32)
 	similar_index_matrix = np.zeros((len(tag_id_dict),len(tag_id_dict)),dtype=np.int8)
 	with open('similar_tag.json') as f:
@@ -64,21 +64,21 @@ if __name__ == '__main__':
 				similar_matrix[first_id][second_id] = float(contents[tag][i][1])
 				similar_index_matrix[first_id][second_id] = 1
 
-	# for i,movie_id in enumerate(movie_id_list):
-	# 	for tag in raw_tag_dict[movie_id]:
-	# 		matrix1[i][tag_id_dict[tag]] = 1
-	# 	for tag in review_tag_dict[movie_id]:
-	# 		matrix2[i][tag_id_dict[tag]] = 1
+	for i,movie_id in enumerate(movie_id_list):
+		for tag in raw_tag_dict[movie_id]:
+			matrix1[i][tag_id_dict[tag]] = 1
+		for tag in review_tag_dict[movie_id]:
+			matrix2[i][tag_id_dict[tag]] = 1
 	
 
-	# for i in range(matrix3.shape[0]):
-	# 	for j in range(matrix3.shape[1]):
-	# 		matrix3[i][j] = matrix1[i][j]+matrix2[i][j]
-	# 		matrix4[i][j] = 2*matrix1[i][j]+matrix2[i][j]
+	for i in range(matrix3.shape[0]):
+		for j in range(matrix3.shape[1]):
+			matrix3[i][j] = matrix1[i][j]+matrix2[i][j]
+			matrix4[i][j] = 2*matrix1[i][j]+matrix2[i][j]
 
-	# np.savetxt('hot_matrix.txt',matrix1,fmt="%d")
-	# np.savetxt('review_matrix.txt',matrix2,fmt="%d")
-	# np.savetxt('mix_matrix1.txt',matrix3,fmt="%d")
-	# np.savetxt('mix_matrix2.txt',matrix4,fmt="%d")
+	np.savetxt('hot_matrix.txt',matrix1,fmt="%d")
+	np.savetxt('review_matrix.txt',matrix2,fmt="%d")
+	np.savetxt('mix_matrix1.txt',matrix3,fmt="%d")
+	np.savetxt('mix_matrix2.txt',matrix4,fmt="%d")
 	np.savetxt('similar_matrix.txt',similar_matrix,fmt="%.4f")
 	np.savetxt('similar_index_matrix.txt',similar_index_matrix,fmt="%.4f")

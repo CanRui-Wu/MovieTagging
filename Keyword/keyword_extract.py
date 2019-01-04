@@ -64,7 +64,7 @@ class KeywordHandler:
 			all_content = ""
 			for content in self.all_content:
 				all_content += content
-			temp_keywords = self.textrank(all_content,topK=10000,withWeight=True)
+			temp_keywords = self.textrank(all_content,topK=20,withWeight=True)
 			for keyword,value in temp_keywords:
 				if keyword in self.allow_set:
 						keywords_dict[keyword] = value

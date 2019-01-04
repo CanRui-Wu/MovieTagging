@@ -22,7 +22,8 @@ sepical_hot_id_set = set()
 
 sepical_hot_id_path = "/home/wucanrui/Desktop/毕业论文/Crawler/sepcial_hot_id.txt"
 source_file_path = "/home/wucanrui/Desktop/毕业论文/Crawler/hot_movie_tag.json"
-source_file_path2 = "../CBCF/tag.json"
+source_file_path2 = sys.argv[1]
+print source_file_path2
 source_file_path3 = "/home/wucanrui/Desktop/毕业论文/Crawler/sepcial_hot_movie_tag.json"
 rate_directory = "/home/wucanrui/Desktop/毕业论文/Crawler/电影详细属性"
 
@@ -94,9 +95,6 @@ with open(source_file_path3) as f:
 		for tag in contents[movie_id]:
 			sepical_movie_tags_dict[movie_id].append(tag_id_dict[tag])
 
-
-
-
 with open('rate_train.svm','w') as f:
 	for movie_id in movie_tags_dict:
 		result = ""
@@ -114,110 +112,12 @@ with open('rate_train.svm','w') as f:
 		f.write('\n')
 
 
-with open('collect_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_collect_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-with open('comment_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_comment_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-with open('reviews_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_reviews_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-with open('wish_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_wish_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-
-with open('year_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_year_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-
-with open('rating_train.svm','w') as f:
-	for movie_id in movie_tags_dict:
-		result = ""
-		result += str(movie_rating_dict[movie_id])
-		tag_list = [0 for i in range(len(tag_id_dict))]
-		for index in movie_tags_dict[movie_id]:
-			tag_list[index] = 1
-		for i,indicator in enumerate(tag_list):
-			if indicator == 1:
-				result += " "
-				result += str(i+1)
-				result += ":"
-				result += str(indicator)
-		f.write(result)
-		f.write('\n')
-
-# with open('rate_test.svm','w') as f:
-# 	for movie_id in sepical_movie_tags_dict:
+# with open('collect_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
 # 		result = ""
-# 		result += str(movie_rate_dict[movie_id])
+# 		result += str(movie_collect_dict[movie_id])
 # 		tag_list = [0 for i in range(len(tag_id_dict))]
-# 		for index in sepical_movie_tags_dict[movie_id]:
+# 		for index in movie_tags_dict[movie_id]:
 # 			tag_list[index] = 1
 # 		for i,indicator in enumerate(tag_list):
 # 			if indicator == 1:
@@ -227,6 +127,104 @@ with open('rating_train.svm','w') as f:
 # 				result += str(indicator)
 # 		f.write(result)
 # 		f.write('\n')
+
+# with open('comment_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
+# 		result = ""
+# 		result += str(movie_comment_dict[movie_id])
+# 		tag_list = [0 for i in range(len(tag_id_dict))]
+# 		for index in movie_tags_dict[movie_id]:
+# 			tag_list[index] = 1
+# 		for i,indicator in enumerate(tag_list):
+# 			if indicator == 1:
+# 				result += " "
+# 				result += str(i+1)
+# 				result += ":"
+# 				result += str(indicator)
+# 		f.write(result)
+# 		f.write('\n')
+
+# with open('reviews_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
+# 		result = ""
+# 		result += str(movie_reviews_dict[movie_id])
+# 		tag_list = [0 for i in range(len(tag_id_dict))]
+# 		for index in movie_tags_dict[movie_id]:
+# 			tag_list[index] = 1
+# 		for i,indicator in enumerate(tag_list):
+# 			if indicator == 1:
+# 				result += " "
+# 				result += str(i+1)
+# 				result += ":"
+# 				result += str(indicator)
+# 		f.write(result)
+# 		f.write('\n')
+
+# with open('wish_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
+# 		result = ""
+# 		result += str(movie_wish_dict[movie_id])
+# 		tag_list = [0 for i in range(len(tag_id_dict))]
+# 		for index in movie_tags_dict[movie_id]:
+# 			tag_list[index] = 1
+# 		for i,indicator in enumerate(tag_list):
+# 			if indicator == 1:
+# 				result += " "
+# 				result += str(i+1)
+# 				result += ":"
+# 				result += str(indicator)
+# 		f.write(result)
+# 		f.write('\n')
+
+
+# with open('year_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
+# 		result = ""
+# 		result += str(movie_year_dict[movie_id])
+# 		tag_list = [0 for i in range(len(tag_id_dict))]
+# 		for index in movie_tags_dict[movie_id]:
+# 			tag_list[index] = 1
+# 		for i,indicator in enumerate(tag_list):
+# 			if indicator == 1:
+# 				result += " "
+# 				result += str(i+1)
+# 				result += ":"
+# 				result += str(indicator)
+# 		f.write(result)
+# 		f.write('\n')
+
+
+# with open('rating_train.svm','w') as f:
+# 	for movie_id in movie_tags_dict:
+# 		result = ""
+# 		result += str(movie_rating_dict[movie_id])
+# 		tag_list = [0 for i in range(len(tag_id_dict))]
+# 		for index in movie_tags_dict[movie_id]:
+# 			tag_list[index] = 1
+# 		for i,indicator in enumerate(tag_list):
+# 			if indicator == 1:
+# 				result += " "
+# 				result += str(i+1)
+# 				result += ":"
+# 				result += str(indicator)
+# 		f.write(result)
+# 		f.write('\n')
+
+with open('rate_test.svm','w') as f:
+	for movie_id in sepical_movie_tags_dict:
+		result = ""
+		result += str(movie_rate_dict[movie_id])
+		tag_list = [0 for i in range(len(tag_id_dict))]
+		for index in sepical_movie_tags_dict[movie_id]:
+			tag_list[index] = 1
+		for i,indicator in enumerate(tag_list):
+			if indicator == 1:
+				result += " "
+				result += str(i+1)
+				result += ":"
+				result += str(indicator)
+		f.write(result)
+		f.write('\n')
 
 # with open('collect_test.svm','w') as f:
 # 	for movie_id in sepical_movie_tags_dict:

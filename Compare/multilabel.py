@@ -24,10 +24,10 @@ test_data = pd.read_csv('../Similarity/test_film_embedded.csv')
 
 attribute_list = []
 tag_list = []
-for i in range(477):
-	attribute_list.append("Country" + str(i+1)) 
-for i in range(50):
-	attribute_list.append("Genre" + str(i+1))
+# for i in range(477):
+# 	attribute_list.append("Country" + str(i+1)) 
+# for i in range(50):
+# 	attribute_list.append("Genre" + str(i+1))
 for i in range(200):
 	attribute_list.append("Summary" + str(i+1))
 for i in range(200):
@@ -41,10 +41,7 @@ X_test = np.matrix(test_data[attribute_list])
 Y_test = np.matrix(test_data[tag_list])
 train_id = train_data["Id"]
 test_id = test_data["Id"]
-# top250_id_list = []
-# with open('top250.txt') as f:
-# 	for line in f.readlines():
-# 		top250_id_list.append(line[:-1].decode('utf-8'))
+
 
 tag_list = []
 with open('../Crawler/allow_tag.txt') as f:
@@ -52,12 +49,12 @@ with open('../Crawler/allow_tag.txt') as f:
 		tag_list.append(line[:-1].decode('utf-8'))
 
 
-classifier = MLkNN(k=500)
+#classifier = MLkNN(k=100)
 #classifier = MLARAM()
 #classifier = LabelPowerset(classifier = SVC(), require_dense = [False, True])
 #classifier = ClassifierChain(GaussianNB())
 #classifier = ClassifierChain(SGDClassifier())
-#classifier = LabelPowerset(tree.DecisionTreeClassifier(),require_dense = [False, False])
+classifier = LabelPowerset(tree.DecisionTreeClassifier(),require_dense = [False, False])
 #classifier = ClassifierChain(tree.DecisionTreeClassifier())
 #classifier = BinaryRelevance(classifier = SVC(), require_dense = [False, True])
 
@@ -80,6 +77,6 @@ for i in range(len(test_id)):
 		if y_test_pred[i,j] == 1:
 			movie_tag_dict[test_id[i]].append(tag_list[j]) 
 
-f = open('KNN_500_test_new.json','w')
+f = open('LT.json','w')
 f.write(json.dumps(movie_tag_dict,ensure_ascii=False,sort_keys=True, indent=2))
 f.close()

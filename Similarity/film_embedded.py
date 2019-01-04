@@ -154,9 +154,9 @@ if __name__ == '__main__':
 		temp.extend(country_vector)
 		temp.extend(genre_vector)
 		for i in range(len(model.docvecs[n])):
-			temp.append(model.docvecs[n][i]/50)
+			temp.append(model.docvecs[n][i])
 		for i in range(len(model.docvecs[n+100000])):
-			temp.append(model.docvecs[n+100000][i]/50)
+			temp.append(model.docvecs[n+100000][i])
 		tag_vector = [0 for i in range(len(tag_index_map))]
 		for tag in movie_tag_dict[film.id]:
 			if not tag_index_map.has_key(tag):
@@ -204,9 +204,9 @@ if __name__ == '__main__':
 		temp.extend(country_vector)
 		temp.extend(genre_vector)
 		for i in range(len(model.docvecs[n])):
-			temp.append(model.docvecs[n][i]/50)
+			temp.append(model.docvecs[n][i])
 		for i in range(len(model.docvecs[n+100000])):
-			temp.append(model.docvecs[n+100000][i]/50)
+			temp.append(model.docvecs[n+100000][i])
 		tag_vector = [0 for i in range(len(tag_index_map))]
 		for tag in movie_tag_dict[film.id]:
 			if not tag_index_map.has_key(tag):
